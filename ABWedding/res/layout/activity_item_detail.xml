@@ -3,7 +3,7 @@
     android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ab.abwedding.ItemDetailActivity"
+    tools:context="com.ab.abwedding.activity.ItemDetailActivity"
     tools:ignore="MergeRootFrame" >
 
     <EditText
@@ -15,6 +15,12 @@
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </FrameLayout>
 

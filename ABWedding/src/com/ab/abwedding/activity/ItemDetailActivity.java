@@ -1,4 +1,6 @@
-package com.ab.abwedding;
+package com.ab.abwedding.activity;
+
+import com.ab.abwedding.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ public class ItemDetailActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_item_detail);
 
 		// Show the Up button in the action bar.
-		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity

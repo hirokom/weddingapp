@@ -1,10 +1,25 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lnr_layout"
+    style="?android:attr/textAppearanceLarge"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical" >
+    >
+
+<Button
+    android:id="@+id/btn_fragment_detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="通信開始" />
+
+<TextView 
     android:id="@+id/item_detail"
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
-    tools:context="com.ab.abwedding.ItemDetailFragment" />
+    tools:context="com.ab.abwedding.activity.ItemDetailFragment" />
 
+</LinearLayout>

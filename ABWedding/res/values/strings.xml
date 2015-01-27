@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- common -->
     <string name="app_name">ABWedding</string>
     <string name="title_item_detail">Item Detail</string>
-
+	<string name="connecting">connecting&#8230;</string>
+	<string name="connet_error">接続エラー	</string>
+	
+	<!-- validation -->
+	<string name="vali_nessesary">名前とキーを入力してください</string>
+	<!-- login -->
+	<string name="name">name</string>
+	<string name="key">key</string>
+	<string name="login">login</string>
 </resources>

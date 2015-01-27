@@ -1,8 +1,15 @@
-package com.ab.abwedding;
+package com.ab.abwedding.activity;
 
+import com.ab.abwedding.R;
+import com.ab.abwedding.interfaces.AsyncCallback;
+import com.ab.abwedding.util.AsyncPost;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -28,9 +35,15 @@ public class ItemListActivity extends FragmentActivity implements
 	 */
 	private boolean mTwoPane;
 
+	private ProgressDialog progressDialog = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// connect start
+		initFunc();
+
 		setContentView(R.layout.activity_item_list);
 
 		if (findViewById(R.id.item_detail_container) != null) {
@@ -47,6 +60,48 @@ public class ItemListActivity extends FragmentActivity implements
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.
+	}
+
+	private void initFunc() {
+
+		// create progress dialog
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage(getResources().getText(R.string.connecting));
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progressDialog.setIndeterminate(false);
+		progressDialog.setCancelable(true);
+		progressDialog.show();
+
+		AsyncPost ap = new AsyncPost(new AsyncCallback() {
+
+			@Override
+			public void onProgressUpdate(int progress) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void onPreExecute() {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void onPostExecute(String result) {
+				// TODO Auto-generated method stub
+				Log.i("connect result", result);
+				progressDialog.cancel();
+			}
+
+			@Override
+			public void onCancelled() {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(),
+						getString(R.string.connet_error), Toast.LENGTH_LONG)
+						.show();
+				Log.e("connect false", "error");
+				progressDialog.cancel();
+			}
+		});
+		ap.execute(AsyncPost.GET_MEMBER_LIST, "userId", "key");
 	}
 
 	/**

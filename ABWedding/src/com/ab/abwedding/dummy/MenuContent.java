@@ -6,43 +6,49 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
+ * Menu list information saved.
+ * 
  * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * TODO: Now, menus are defined. but it has to change to get from web server.
  */
-public class DummyContent {
+public class MenuContent {
 
 	/**
-	 * An array of sample (dummy) items.
+	 * An array of menu items.
 	 */
-	public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+	public static List<MenuItem> MENUS = new ArrayList<MenuItem>();
 
 	/**
-	 * A map of sample (dummy) items, by ID.
+	 * A map of menu, by ID.
 	 */
-	public static Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+	public static Map<String, MenuItem> MENUS_MAP = new HashMap<String, MenuItem>();
 
 	static {
 		// Add 3 sample items.
-		addItem(new DummyItem("1", "Item 1"));
-		addItem(new DummyItem("2", "Item 2"));
-		addItem(new DummyItem("3", "Item 3"));
-	}
-
-	private static void addItem(DummyItem item) {
-		ITEMS.add(item);
-		ITEM_MAP.put(item.id, item);
+		// TODO change to string.xml define
+		addItem(new MenuItem("1", "参加者一覧"));
+		addItem(new MenuItem("2", "お食事"));
+		addItem(new MenuItem("3", "新郎新婦紹介"));
+		addItem(new MenuItem("4", "アクセス"));
 	}
 
 	/**
-	 * A dummy item representing a piece of content.
+	 * add menu
+	 * @param menu
 	 */
-	public static class DummyItem {
+	private static void addItem(MenuItem item) {
+		MENUS.add(item);
+		MENUS_MAP.put(item.id, item);
+	}
+
+	/**
+	 * A menu representing a piece of content.
+	 */
+	public static class MenuItem {
 		public String id;
 		public String content;
 
-		public DummyItem(String id, String content) {
+		public MenuItem(String id, String content) {
 			this.id = id;
 			this.content = content;
 		}

@@ -1,4 +1,7 @@
-package com.ab.abwedding;
+package com.ab.abwedding.activity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.ab.abwedding.dummy.DummyContent;
+import com.ab.abwedding.dummy.MenuContent;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports
@@ -71,11 +74,11 @@ public class ItemListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		// TODO: replace with a real list adapter.
-		setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+		setListAdapter(new ArrayAdapter<MenuContent.MenuItem>(getActivity(),
 				android.R.layout.simple_list_item_activated_1,
-				android.R.id.text1, DummyContent.ITEMS));
+				android.R.id.text1, MenuContent.MENUS));
 	}
-
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -116,7 +119,7 @@ public class ItemListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+		mCallbacks.onItemSelected(MenuContent.MENUS.get(position).id);
 	}
 
 	@Override
