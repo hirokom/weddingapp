@@ -4,9 +4,11 @@ import com.ab.abwedding.R;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
+
 
 /**
  * An activity representing a single Item detail screen. This activity is only
@@ -16,7 +18,7 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link ItemDetailFragment}.
  */
-public class ItemDetailActivity extends ActionBarActivity {
+public class ItemDetailActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class ItemDetailActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_item_detail);
 
 		// Show the Up button in the action bar.
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity
@@ -51,6 +53,7 @@ public class ItemDetailActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
+		Log.i("onOptionsItemSelected",id + "");
 		if (id == android.R.id.home) {
 			// This ID represents the Home or Up button. In the case of this
 			// activity, the Up button is shown. Use NavUtils to allow users

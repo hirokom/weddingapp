@@ -1,7 +1,12 @@
 package com.ab.abwedding.activity;
 
+import com.ab.abwedding.R;
+import com.ab.abwedding.base.FragmentBase;
+import com.ab.abwedding.dummy.MenuContent;
+import com.ab.abwedding.interfaces.AsyncCallback;
+import com.ab.abwedding.util.AsyncPost;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ab.abwedding.R;
-import com.ab.abwedding.dummy.MenuContent;
-import com.ab.abwedding.interfaces.AsyncCallback;
-import com.ab.abwedding.util.AsyncPost;
-
 /**
  * A fragment representing a single Item detail screen. This fragment is either
  * contained in a {@link ItemListActivity} in two-pane mode (on tablets) or a
  * {@link ItemDetailActivity} on handsets.
  */
-public class ItemDetailFragment extends Fragment {
+public class ItemDetailFragment extends FragmentBase {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -39,9 +39,7 @@ public class ItemDetailFragment extends Fragment {
 	public ItemDetailFragment() {
 	}
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void subOnCreate(Bundle savedInstanceState) {
 
 		if (getArguments().containsKey(ARG_ITEM_ID)) {
 			// Load the dummy content specified by the fragment
@@ -53,7 +51,7 @@ public class ItemDetailFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	protected View subOnCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_item_detail,
 				container, false);
@@ -64,8 +62,8 @@ public class ItemDetailFragment extends Fragment {
 					.setText(mItem.content);
 		}
 
-		((Button) rootView.findViewById(R.id.btn_fragment_detail))
-		.setOnClickListener(new OnClickListener() {
+		((Button) rootView.findViewById(R.id.btn_fragment_detail)).setOnClickListener(
+				new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -103,4 +101,5 @@ public class ItemDetailFragment extends Fragment {
 		
 		return rootView;
 	}
+
 }

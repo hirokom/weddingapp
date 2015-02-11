@@ -4,7 +4,6 @@
  *
  */
 package com.ab.abwedding.util;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -24,6 +23,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.ab.abwedding.interfaces.AsyncCallback;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -43,16 +43,26 @@ public class AsyncPost extends AsyncTask<String, Integer, String> {
 //	private static final String URL_MEMBER_LIST = "http://www.golugolu.net/GolfCourse/SearchV13";
 	private static final String URL_MEMBER_LIST = "http://localhost:80/weddingappserver";//http://192.168.0.5:8000/absampleapp/restget3";
 
+	public static String G_MENU_LdIST = "getMenuList";
+
 	/** parameter key of userID */
 	private static final String PARAM_USERID = "usrId";
 	/** parameter key of key */
 	private static final String PARAM_KEY = "key";
 
-    private AsyncCallback asyncCallback = null;;
+	/** context for some indication */
+	private Context context;
 
+	private AsyncCallback asyncCallback = null;;
+	
     public AsyncPost() {
     }
 
+	public AsyncPost(Context context, AsyncCallback asyncCallback) {
+		this.asyncCallback = asyncCallback;
+		this.context = context;
+	}
+	
     public AsyncPost(AsyncCallback asyncCallback) {
         this.asyncCallback = asyncCallback;
     }
@@ -180,45 +190,4 @@ public class AsyncPost extends AsyncTask<String, Integer, String> {
 		}
 		return result;
 	}
-
-	
-	// public static enum ConnectType {GetMemberList(G_MEMBER_LIST),
-	// GetMenuList(G_MENU_LIST);
-	// private String _methodName;
-	// private ConnectType(String methodName) {
-	// this._methodName = methodName;
-	// }
-	// public String getMethodName() {
-	// return _methodName;
-	// }
-	// }
-	//
-	// @Override
-	// protected String doInBackground(String... params) {
-	// // TODO Auto-generated method stub
-	// if (params == null || params.length == 0)
-	// return null;
-	// String result = null;
-	// ConnectType ct = ConnectType.valueOf(params[0]);
-	// if (ct != null) {
-	// Method m;
-	// try {
-	// m = AsyncPost.class.getMethod(ct.getMethodName(), params[0].getClass());
-	// result = (String) m.invoke(this, null);
-	// } catch (NoSuchMethodException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// } catch (IllegalAccessException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (IllegalArgumentException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// } catch (InvocationTargetException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// return result;
-	// }
 }

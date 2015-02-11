@@ -13,6 +13,17 @@ import java.util.Map;
  */
 public class MenuContent {
 
+	/** 参加者一覧 */
+	public static String MEMBER_ID = "1";
+	/** 食事一覧 */
+	public static String FOOD_ID = "2";
+	/** 新郎新婦紹介 */
+	public static String INTRODUCE_ID = "3";
+	/** アクセス */
+	public static String ACCESS_ID = "4";
+	/** テスト用 */
+	public static String TEST_ID = "9";
+	
 	/**
 	 * An array of menu items.
 	 */
@@ -26,10 +37,12 @@ public class MenuContent {
 	static {
 		// Add 3 sample items.
 		// TODO change to string.xml define
-		addItem(new MenuItem("1", "参加者一覧"));
-		addItem(new MenuItem("2", "お食事"));
-		addItem(new MenuItem("3", "新郎新婦紹介"));
-		addItem(new MenuItem("4", "アクセス"));
+		// TODO change to get data from web
+		addItem(new MenuItem(MEMBER_ID, "参加者一覧"));
+		addItem(new MenuItem(FOOD_ID, "お食事"));
+		addItem(new MenuItem(INTRODUCE_ID, "新郎新婦紹介"));
+		addItem(new MenuItem(ACCESS_ID, "アクセス"));
+		addItem(new MenuItem(TEST_ID, "テスト用"));
 	}
 
 	/**

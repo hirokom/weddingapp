@@ -1,8 +1,5 @@
 package com.ab.abwedding.activity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;

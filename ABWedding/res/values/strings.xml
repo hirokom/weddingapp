@@ -13,4 +13,12 @@
 	<string name="name">name</string>
 	<string name="key">key</string>
 	<string name="login">login</string>
+	
+	<!-- adress -->
+	<string name="postal_code">郵便番号:</string>
+	<string name="address">アドレス:</string>
+	
+	<!-- introduction -->
+	<string name="nameOfCouple"></string>
+	<string name="hobby">趣味</string>
 </resources>
