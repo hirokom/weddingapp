@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="libs/httpcore-4.1.jar"/>
 	<classpathentry kind="lib" path="libs/httpmime-4.1.1.jar"/>
 	<classpathentry kind="lib" path="libs/jackson-core-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/git/weddingapp/ABWedding/libs/jackson-databind-2.5.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

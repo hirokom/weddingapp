@@ -80,6 +80,12 @@ public class LoginActivity extends Activity {
 		btnLogin.setOnClickListener(loginBtnOCL);
 
 	}
+	/*
+	 * DB未接続時の初期データ取得
+	 */
+	private void getInfoDriver(){
+		CommonData.setMemberList();
+	}
 
 	/**
 	 * on click function of login button
@@ -87,6 +93,9 @@ public class LoginActivity extends Activity {
 	private OnClickListener loginBtnOCL = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
+			// DB未実装時はドライバをキックして自前でデータを用意する
+			getInfoDriver();
+
 			if ("".equals(edtTxtName.getText().toString())
 					|| "".equals(edtTxtKey.getText().toString())) {
 				Log.i("blank", "blank");
@@ -99,6 +108,8 @@ public class LoginActivity extends Activity {
 				ConnectWeb.getMemberlist(getApplicationContext(), ac,
 						edtTxtName.getText().toString(), edtTxtKey.getText()
 								.toString());
+				// 一旦ログイン時のIDを持っておく
+				CommonData.usrid = edtTxtName.getText().toString();
 			}
 		}
 	};
@@ -121,7 +132,6 @@ public class LoginActivity extends Activity {
 			JsonParser parser;
 
 			String name = null;
-			String rlname = null;
 			String comment = null;
 			int answer;
 
@@ -151,7 +161,7 @@ public class LoginActivity extends Activity {
 													.println(parser.getText());
 										}
 										answer = BizConst.INVITATION_ACCEPT;
-										CommonData.setMember(name, rlname, comment, answer);
+										CommonData.setMember(CommonData.usrid, name, comment, answer);
 									}
 								}
 								// "mail"フィールド

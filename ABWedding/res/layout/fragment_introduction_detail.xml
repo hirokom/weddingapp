@@ -4,64 +4,149 @@
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center|top"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/item_detail"
-        style="?android:attr/textAppearanceLarge"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="com.ab.abwedding.activity.ItemDetailFragment" />
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/TextView001"
+        android:layout_width="437dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:minHeight="40dp"
+        android:text="幸せいっぱい、新郎新婦のご紹介です。"
+        android:textSize="20sp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/fName"
-            android:layout_width="0dp"
+            android:id="@+id/TextViewn01"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="名前"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TextViewn02"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/nameOfCouple" />
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新郎名前"
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/txtVwHusbandName"
-            android:layout_width="0dp"
+            android:id="@+id/TextViewn03"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/txtVwWifeName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新婦名前"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/fHobby"
-            android:layout_width="wrap_content"
+            android:id="@+id/imageView01"
+            android:layout_width="166dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/hobby" />
+            android:ems="10"
+            android:minHeight="40dp"
+            android:text="写真"
+            android:textColorHint="@color/hint_foreground_material_light"
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/txtVwHusbandHobby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/imageView02"
+            android:layout_width="147dp"
+            android:layout_height="147dp"
+            android:src="@android:drawable/alert_dark_frame" />
 
-        <TextView
-            android:id="@+id/txtVwWifeHobby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2" />
+        <ImageView
+            android:id="@+id/imageView03"
+            android:layout_width="147dp"
+            android:layout_height="147dp"
+            android:src="@android:drawable/alert_light_frame" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
+        <TextView
+            android:id="@+id/TextViewh01"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="誕生日"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TextViewh02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新郎誕生日" />
+
+        <TextView
+            android:id="@+id/TextViewh03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新婦誕生日" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/TextViewh011"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="趣味"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TextViewb02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新郎趣味" />
+
+        <TextView
+            android:id="@+id/TextViewb03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:minHeight="30dp"
+            android:text="新婦趣味" />
+    </LinearLayout>
 </LinearLayout>

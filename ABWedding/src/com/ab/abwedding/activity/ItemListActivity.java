@@ -132,8 +132,7 @@ public class ItemListActivity extends FragmentActivity implements
 			} else if (MenuContent.ACCESS_ID.equals(id)) {
 				replaceFragment(AccessFragment.getFragment(args));
 			} else if (MenuContent.TEST_ID.equals(id)) {
-				// TODO test用のため昔の書き方を残しておく
-				ItemDetailFragment fragment = new ItemDetailFragment();
+				MessageFragment fragment = new MessageFragment();
 				fragment.setArguments(args);
 				getSupportFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment).commit();
@@ -159,7 +158,7 @@ public class ItemListActivity extends FragmentActivity implements
 		// TODO test用のタグ
 		String TEST_TAG = "testTag";
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.item_detail_container, fragment, TEST_TAG)
+				.replace(R.id.item_detail_container, fragment)
 				.commit();
 	}
 }

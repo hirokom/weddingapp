@@ -30,8 +30,8 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 	private Button save_btn;
 	private EditText input_name,input_mess;
 	private TextView output_name,output_text,list_comment,list_title;
-	private ViewGroup vg;
 	private TableLayout tl;
+	private List<Member> ml;
 
 	/**
 	 * get MemberDetailFragment instance
@@ -69,25 +69,32 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 		output_text = (TextView)rootView.findViewById(R.id.greeting_text);
 		list_comment = (TextView)rootView.findViewById(R.id.textView2);
 		list_title = (TextView)rootView.findViewById(R.id.textView4);
-		vg = (ViewGroup)rootView.findViewById(R.id.TableLayout1);
 		tl = (TableLayout)rootView.findViewById(R.id.TableLayout1);
 
+		// ユーザリストを取得
+		ml = CommonData.getMemberList();
 
-		save_btn.setOnClickListener(this);
+		// 既にユーザが登録されていれば画面切り替え
+		if (CommonData.containsUsrId(CommonData.usrid)){
+			chgLooks();
+		}else{
+			save_btn.setOnClickListener(this);
 
-		// 出さないテキストは一旦非表示
-		list_comment.setVisibility(View.GONE);
-		list_title.setVisibility(View.GONE);
-
+			// 出さないテキストは一旦非表示
+			list_comment.setVisibility(View.GONE);
+			list_title.setVisibility(View.GONE);
+		}
 		return rootView;
 	}
 
 	@Override
 	public void onClick(View v){
 		// ユーザ本人をメンバリストに追加
-		CommonData.setMember(CommonData.usrnm, input_name.getText().toString(),
+		CommonData.setMember(CommonData.usrid, input_name.getText().toString(),
 							 input_mess.getText().toString(),1);
-
+		chgLooks();
+	}
+	public void chgLooks(){
 		// テキストの変更
 		output_name.setText(input_name.getText());
 		output_name.setTextColor(Color.RED);
@@ -102,25 +109,6 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 		list_comment.setVisibility(View.VISIBLE);
 		list_title.setVisibility(View.VISIBLE);
 		list_title.setTextColor(Color.BLUE);
-
-		// ユーザリストを取得
-		List<Member> ml = CommonData.getMemberList();
-
-		String[][] user_list = new String[6][2];
-
-		user_list[0][0] = "お名前　　　　　";
-		user_list[0][1] = "メッセージ";
-		user_list[1][0] = input_name.getText().toString();
-		user_list[1][1] = input_mess.getText().toString();
-		user_list[2][0] = "石川 達也";
-		user_list[2][1] = "おめでとうございます！！";
-		user_list[3][0] = "関口 太郎";
-		user_list[3][1] = "結婚おめでとうございます。お幸せに！";
-		user_list[4][0] = "土屋 司";
-		user_list[4][1] = "眠い";
-		user_list[5][0] = "高麗 浩士";
-		user_list[5][1] = "モンストモンストモンストモンストモンストモンストモンストモンスト";
-
 
 		// 表のヘッダ表示
 		TableRow tr = new TableRow(getActivity());
@@ -137,7 +125,7 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 	    tv1.setId(0);
 	    tv1.setTextSize(15);
 	    tv1.setPadding(10, 5, 10, 5);
-	    tv1.setWidth(400);
+	    tv1.setWidth(250);
 	    tr.addView(tv1);
 
     	tv2.setBackgroundResource(R.drawable.table_header);
@@ -151,7 +139,6 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
         tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
 		// 表の中身表示
-        System.out.println("リストサイズ："+ml.size());
         for (int i = 0; i < ml.size(); i++) {
 	    	Member m = ml.get(i);
 
@@ -164,7 +151,7 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 	    	// TEXTVIEWS
 	    	tv1.setBackgroundResource(R.drawable.table_detail);
 		    tv1.setTextColor(Color.DKGRAY);
-		    tv1.setText(m.getRealName());
+		    tv1.setText(m.getName());
 			tv1.setId(2+i*2);
 			tv1.setTextSize(15);
 			tv1.setPadding(10, 5, 10, 5);
@@ -178,15 +165,18 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 		    tv2.setPadding(10, 5, 10, 5);
 		    tr.addView(tv2);
 
-
-	        // Button
-	        // 自分の行にだけ出す
-	        // if(i==1){
+	        // 自分の行だけ特殊効果
+	        if(m.getUsrId()==CommonData.usrid){
+	        	tv1.setBackgroundResource(R.drawable.table_detail_hl);
+	        	tv1.setTextColor(Color.RED);
+	        	tv2.setBackgroundResource(R.drawable.table_detail_hl);
+	        	tv2.setTextColor(Color.RED);
 		    //     btn.setText("変更");
 		    //     btn.setId(20);
 		    //     btn.setHeight(20);
 		    //     tr.addView(btn);
-	        // }
+	        //
+	        }
 
 	        tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
