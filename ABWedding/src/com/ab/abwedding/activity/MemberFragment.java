@@ -1,5 +1,7 @@
 package com.ab.abwedding.activity;
 
+import java.util.List;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 
 import com.ab.abwedding.R;
 import com.ab.abwedding.base.FragmentBase;
+import com.ab.abwedding.data.CommonData;
+import com.ab.abwedding.data.Member;
 
 public class MemberFragment extends FragmentBase implements OnClickListener{
 
@@ -80,6 +84,10 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 
 	@Override
 	public void onClick(View v){
+		// ユーザ本人をメンバリストに追加
+		CommonData.setMember(CommonData.usrnm, input_name.getText().toString(),
+							 input_mess.getText().toString(),1);
+
 		// テキストの変更
 		output_name.setText(input_name.getText());
 		output_name.setTextColor(Color.RED);
@@ -95,7 +103,9 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 		list_title.setVisibility(View.VISIBLE);
 		list_title.setTextColor(Color.BLUE);
 
-		// 参加者の取得
+		// ユーザリストを取得
+		List<Member> ml = CommonData.getMemberList();
+
 		String[][] user_list = new String[6][2];
 
 		user_list[0][0] = "お名前　　　　　";
@@ -112,59 +122,75 @@ public class MemberFragment extends FragmentBase implements OnClickListener{
 		user_list[5][1] = "モンストモンストモンストモンストモンストモンストモンストモンスト";
 
 
-		// 表の表示
-		for (int i = 0; i < 6; i++) {
+		// 表のヘッダ表示
+		TableRow tr = new TableRow(getActivity());
+	    TextView tv1 = new TextView(getActivity());
+	    TextView tv2 = new TextView(getActivity());
 
-			TableRow tr = new TableRow(getActivity());
-		    TextView tv1 = new TextView(getActivity());
-		    TextView tv2 = new TextView(getActivity());
-		    Button btn = new Button(getActivity());
+		tr.setId(0);
+	    tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+    	tr.setBackgroundResource(R.drawable.table_header);
 
+    	tv1.setBackgroundResource(R.drawable.table_header);
+	    tv1.setTextColor(Color.WHITE);
+	    tv1.setText("お名前");
+	    tv1.setId(0);
+	    tv1.setTextSize(15);
+	    tv1.setPadding(10, 5, 10, 5);
+	    tv1.setWidth(400);
+	    tr.addView(tv1);
 
-			tr.setId(i);
-		    tr.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+    	tv2.setBackgroundResource(R.drawable.table_header);
+        tv2.setTextColor(Color.WHITE);
+        tv2.setText("メッセージ");
+        tv2.setId(1);
+        tv2.setTextSize(15);
+        tv2.setPadding(10, 5, 10, 5);
+        tr.addView(tv2);
 
-		    // 表のヘッダ
-		    if(i==0){
-		    	tr.setBackgroundResource(R.drawable.table_header);
-		    	tv1.setBackgroundResource(R.drawable.table_header);
-		    	tv2.setBackgroundResource(R.drawable.table_header);
-			    tv1.setTextColor(Color.WHITE);
-		        tv2.setTextColor(Color.WHITE);
-		    // 表の中身
-		    }else{
-		    	tr.setBackgroundResource(R.drawable.table_detail);
-		    	tv1.setBackgroundResource(R.drawable.table_detail);
-		    	tv2.setBackgroundResource(R.drawable.table_detail);
-			    tv1.setTextColor(Color.DKGRAY);
-		        tv2.setTextColor(Color.DKGRAY);
-		    }
+        tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-		    // TEXTVIEWS
-		    tv1.setText(user_list[i][0]);
-		    tv1.setId(i);
-		    tv1.setTextSize(15);
-		    tv1.setPadding(10, 5, 10, 5);
-		    tr.addView(tv1);
+		// 表の中身表示
+        System.out.println("リストサイズ："+ml.size());
+        for (int i = 0; i < ml.size(); i++) {
+	    	Member m = ml.get(i);
 
-	        tv2.setText(user_list[i][1]);
-	        tv2.setId(i+i);
-	        tv2.setTextSize(15);
-	        tv2.setPadding(10, 5, 10, 5);
-	        tr.addView(tv2);
+			tr = new TableRow(getActivity());
+		    tv1 = new TextView(getActivity());
+		    tv2 = new TextView(getActivity());
+
+	    	tr.setBackgroundResource(R.drawable.table_detail);
+
+	    	// TEXTVIEWS
+	    	tv1.setBackgroundResource(R.drawable.table_detail);
+		    tv1.setTextColor(Color.DKGRAY);
+		    tv1.setText(m.getRealName());
+			tv1.setId(2+i*2);
+			tv1.setTextSize(15);
+			tv1.setPadding(10, 5, 10, 5);
+			tr.addView(tv1);
+
+			tv2.setBackgroundResource(R.drawable.table_detail);
+			tv2.setTextColor(Color.DKGRAY);
+			tv2.setText(m.getComment());
+		    tv2.setId(3+i*2);
+		    tv2.setTextSize(15);
+		    tv2.setPadding(10, 5, 10, 5);
+		    tr.addView(tv2);
+
 
 	        // Button
 	        // 自分の行にだけ出す
-	        if(i==1){
-		        btn.setText("変更");
-		        btn.setId(20);
-		        btn.setHeight(20);
-		        tr.addView(btn);
-	        }
+	        // if(i==1){
+		    //     btn.setText("変更");
+		    //     btn.setId(20);
+		    //     btn.setHeight(20);
+		    //     tr.addView(btn);
+	        // }
 
 	        tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-		    }
+		}
 
 	}
 

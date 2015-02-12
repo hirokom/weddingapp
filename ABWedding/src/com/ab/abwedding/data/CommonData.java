@@ -12,17 +12,27 @@ import java.util.List;
  */
 public class CommonData {
 
+	/** user本人のID */
+	// 一旦これで。
+	public static String usrnm;
 	/** member list */
 	private static List<Member> ml = new ArrayList<Member>();
 	/** postal code */
 	private static String postalCode = "";
 	/** address */
 	private static String address = "";
-	
-	public static boolean setMember(String name,int answer) {
+
+	public static boolean setMember(String name,String rlname,String comment,int answer) {
+		// 暫定 でフィールドに直入れします。
+		usrnm = name;
 		Member m = new Member();
 		m.setName(name);
+		m.setRealName(rlname);
+		m.setComment(comment);
 		m.setAnswer(answer);
+
+		ml.add(m);
+
 		return true;
 	}
 	public static List<Member> getMemberList() {

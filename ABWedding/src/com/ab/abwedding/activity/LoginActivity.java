@@ -24,7 +24,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 /**
  * Login Activity
- * 
+ *
  * @author ishikawatatsuya
  */
 // Show the Up button in the action bar.
@@ -47,7 +47,7 @@ import com.fasterxml.jackson.core.JsonToken;
 // TODO set dummy data
 /**
  * Login Activity
- * 
+ *
  * @author ishikawatatsuya
  */
 public class LoginActivity extends Activity {
@@ -121,6 +121,8 @@ public class LoginActivity extends Activity {
 			JsonParser parser;
 
 			String name = null;
+			String rlname = null;
+			String comment = null;
 			int answer;
 
 			try {
@@ -149,7 +151,7 @@ public class LoginActivity extends Activity {
 													.println(parser.getText());
 										}
 										answer = BizConst.INVITATION_ACCEPT;
-										CommonData.setMember(name, answer);
+										CommonData.setMember(name, rlname, comment, answer);
 									}
 								}
 								// "mail"フィールド
