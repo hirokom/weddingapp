@@ -11,7 +11,7 @@ import com.ab.abwedding.base.FragmentBase;
 public class IntroductionFragment extends FragmentBase {
 
 	private static IntroductionFragment itrdcDtlFragment;
-	
+
 	/**
 	 * get IntroduceDetailFragment instance
 	 * @param args
@@ -26,18 +26,18 @@ public class IntroductionFragment extends FragmentBase {
 		}
 		return itrdcDtlFragment;
 	}
-	
+
 	@Override
 	protected void subOnCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected View subOnCreateView(LayoutInflater inflater,
 			ViewGroup container, Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_item_detail,
+		View rootView = inflater.inflate(R.layout.fragment_introduction_detail,
 				container, false);
 		return null;
 	}

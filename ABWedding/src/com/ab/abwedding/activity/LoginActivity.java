@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonToken;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +18,10 @@ import com.ab.abwedding.data.CommonData;
 import com.ab.abwedding.interfaces.AsyncCallback;
 import com.ab.abwedding.util.BizConst;
 import com.ab.abwedding.util.ConnectWeb;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 /**
  * Login Activity
  * 
@@ -113,64 +116,64 @@ public class LoginActivity extends Activity {
 		@Override
 		public void onPostExecute(String result) {
 //			Log.i("connect result", result);
-//			progressDialog.cancel();
-//			JsonFactory factory = new JsonFactory();
-//			JsonParser parser;
-//
-//			String name = null;
-//			int answer;
-//
-//			try {
-//
-//				// ここでサーバからメンバーリストや食事リスト、アドレスなどのデータを取得して
-//				// データを保存しておく。
-//				parser = factory.createParser(SAMPLE_D);
-//				// 配列の処理
-//				if (parser.nextToken() == JsonToken.START_ARRAY) {
-//					while (parser.nextToken() != JsonToken.END_ARRAY) {
-//						// 各オブジェクトの処理
-//						if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
-//							while (parser.nextToken() != JsonToken.END_OBJECT) {
-//								parser.nextToken();
-//								// "name"フィールド
-//								if ("name".equals(name)) {
-//									System.out.println(name + ": ");
-//									while (parser.nextToken() != JsonToken.END_OBJECT) {
-//
-//										if (parser.getCurrentToken() == JsonToken.FIELD_NAME) {
-//											System.out.print("    "
-//													+ parser.getText() + ": ");
-//											name = parser.getText();
-//										} else if (parser.getCurrentToken() == JsonToken.VALUE_STRING) {
-//											System.out
-//													.println(parser.getText());
-//										}
-//										answer = BizConst.INVITATION_ACCEPT;
-//										CommonData.setMember(name, answer);
-//									}
-//								}
-//								// "mail"フィールド
-//								else if ("mail".equals(name)) {
-//									System.out.println(name + ": "
-//											+ parser.getText());
-//								} else {
-//									parser.skipChildren();
-//								}
-//							}
-//						} else {
-//							parser.skipChildren();
-//						}
-//					}
-//				} else {
-//					parser.skipChildren();
-//				}
-//
-//			} catch (JsonParseException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} finally {
-//			}
+			progressDialog.cancel();
+			JsonFactory factory = new JsonFactory();
+			JsonParser parser;
+
+			String name = null;
+			int answer;
+
+			try {
+
+				// ここでサーバからメンバーリストや食事リスト、アドレスなどのデータを取得して
+				// TODO データを保存しておく。
+				parser = factory.createParser(SAMPLE_D);
+				// 配列の処理
+				if (parser.nextToken() == JsonToken.START_ARRAY) {
+					while (parser.nextToken() != JsonToken.END_ARRAY) {
+						// 各オブジェクトの処理
+						if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
+							while (parser.nextToken() != JsonToken.END_OBJECT) {
+								parser.nextToken();
+								// "name"フィールド
+								if ("name".equals(name)) {
+									System.out.println(name + ": ");
+									while (parser.nextToken() != JsonToken.END_OBJECT) {
+
+										if (parser.getCurrentToken() == JsonToken.FIELD_NAME) {
+											System.out.print("    "
+													+ parser.getText() + ": ");
+											name = parser.getText();
+										} else if (parser.getCurrentToken() == JsonToken.VALUE_STRING) {
+											System.out
+													.println(parser.getText());
+										}
+										answer = BizConst.INVITATION_ACCEPT;
+										CommonData.setMember(name, answer);
+									}
+								}
+								// "mail"フィールド
+								else if ("mail".equals(name)) {
+									System.out.println(name + ": "
+											+ parser.getText());
+								} else {
+									parser.skipChildren();
+								}
+							}
+						} else {
+							parser.skipChildren();
+						}
+					}
+				} else {
+					parser.skipChildren();
+				}
+
+			} catch (JsonParseException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+			}
 
 			// TODO set dummy data
 			CommonData.setAddress("東京都 大田区 一丁目八番19号");

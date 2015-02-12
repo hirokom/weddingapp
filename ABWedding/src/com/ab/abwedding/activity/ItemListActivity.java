@@ -104,7 +104,7 @@ public class ItemListActivity extends FragmentActivity implements
 				progressDialog.cancel();
 			}
 		});
-		
+
 		ap.execute(AsyncPost.GET_MEMBER_LIST, "userId", "key");
 	}
 
@@ -122,7 +122,7 @@ public class ItemListActivity extends FragmentActivity implements
 			args.putString(ItemDetailFragment.ARG_ITEM_ID, id);
 			// TODO 他のFragmentが起動中は他を停止させないと無駄＆Map描画でエラー？
 			FragmentManager fm = getSupportFragmentManager();
-			
+
 			if (MenuContent.MEMBER_ID.equals(id)) {
 				replaceFragment(MemberFragment.getFragment(args));
 			} else if (MenuContent.FOOD_ID.equals(id)) {
@@ -147,11 +147,12 @@ public class ItemListActivity extends FragmentActivity implements
 			Intent detailIntent = new Intent(this, ItemDetailActivity.class);
 			detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
 			startActivity(detailIntent);
+
 		}
 	}
 
 	/**
-	 * replace fragment 
+	 * replace fragment
 	 * @param fragment
 	 */
 	private void replaceFragment(FragmentBase fragment) {
